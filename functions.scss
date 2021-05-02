@@ -1,0 +1,85 @@
+@import "variables";
+
+.grid {
+  display: grid;
+  @each $device, $size in $devices {
+    @media (min-width: $size) {
+      @for $col from 1 through 12 {
+        &.col-#{$device}-#{$col} {
+          grid-template-columns: repeat($col, 1fr);
+        }
+      }
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  @each $class, $rule in $alignItem {
+    &.#{$class} {
+      align-items: $rule;
+    }
+  }
+  @each $class, $rule in $justifyContent {
+    &.#{$class} {
+      justify-content: $rule;
+    }
+  }
+  @each $class, $rule in $flexDirection {
+    &.#{$class} {
+      flex-direction: $rule;
+    }
+  }
+  @each $class, $rule in $flexWrap {
+    &.#{$class} {
+      flex-wrap: $rule;
+    }
+  }
+}
+
+@for $gap from 1 through 100 {
+  &.gap-#{$gap} {
+    gap: $gap * 1px;
+  }
+}
+
+@each $name, $pos in $positions {
+  @for $i from 1 through 100 {
+    .mg-#{$name}-#{$i} {
+      margin-#{$pos}: $i * 1px;
+    }
+    .pd-#{$name}-#{$i} {
+      padding-#{$pos}: $i * 1px;
+    }
+  }
+}
+
+@each $width in $widths {
+  .w-#{$width} {
+    width: $width * 1%;
+  }
+}
+
+@for $height from 1 through 100  {
+  .h-#{$height} {
+    height: $height * 1px;
+  }
+}
+
+@each $name, $font in $fonts {
+  .#{$name} {
+    font-family: $font;
+  }
+}
+
+@each $name, $size in $fontSizes {
+  .font-#{$name} {
+    @include fontSize($size)
+  }
+}
+
+@each $name, $color in $colors {
+  .#{$name} {
+    color: $color;
+  }
+}
