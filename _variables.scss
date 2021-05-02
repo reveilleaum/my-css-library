@@ -1,0 +1,144 @@
+// Variables
+
+//// colors
+$primary: #061249;
+$secondary: #1b71ff;
+$background1: #fafafa;
+$background2: #838aa4;
+$border1: #e7e9ef;
+$border2: #cccfdb;
+$shadow: #171934;
+$title: #1d1737;
+$subtitle: #9898aa;
+$green: #05b388;
+$red: #fc265d;
+$yellow: #f6bb2d;
+$white: #ffffff;
+$grey1: #cccfdb;
+$grey2: #e7e9ef;
+$colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "bgn1": $background1,
+  "bgn2": $background2,
+  "brd1": $border1,
+  "brd2": $border2,
+  "title": $title,
+  "subtitle": $subtitle,
+  "green": $green,
+  "red": $red,
+  "yellow": $yellow,
+  "white": $white,
+  "grey1": $grey1,
+  "grey2": $grey2,
+);
+
+//// fonts
+$light: "URWGeometric Light";
+$regular: "URWGeometric Regular";
+$medium: "URWGeometric Medium";
+$semibold: "URWGeometric SemiBold";
+$bold: "URWGeometric Bold";
+$fonts: (
+  "light": $light,
+  "regular": $regular,
+  "medium": $medium,
+  "semibold": $semibold,
+  "bold": $bold,
+);
+$fontSizes: (
+  "xs": 10px,
+  "s": 12px,
+  "m": 14px,
+  "l": 16px,
+  "xl": 18px,
+);
+
+//// breakpoints
+$devices: (
+  "xxs": 320px,
+  "xs": 375px,
+  "s": 425px,
+  "m": 768px,
+  "l": 1024px,
+  "xl": 1440px,
+  "xxl": 2560px,
+);
+
+//// flex
+$alignItem: (
+  "ai-c": center,
+  "ai-b": baseline,
+  "ai-s": stretch,
+  "ai-fe": flex-end,
+);
+$justifyContent: (
+  "jc-sb": space-between,
+  "jc-sa": space-around,
+  "jc-se": space-evenly,
+  "jc-c": center,
+  "jc-b": baseline,
+  "jc-fe": flex-end,
+  "jc-fs": flex-start,
+);
+$flexDirection: (
+  "fd-c": column,
+  "fd-r": row,
+);
+$flexWrap: (
+  "fw-w": wrap,
+  "fw-n": nowrap,
+);
+
+//// positions
+$positions: (
+  "t": top,
+  "r": right,
+  "b": bottom,
+  "l": left,
+);
+
+//// sizes
+$widths: (10, 20, 30, 33, 40, 50, 60, 66, 70, 80, 90, 100);
+$heights: (10, 20, 30, 40, 50, 60, 70, 80, 90, 100);
+
+// Mixins
+
+//// translate
+@mixin translate($top, $left, $x, $y) {
+  top: $top;
+  left: $left;
+  transform: translate($x, $y);
+}
+
+//// flex center
+@mixin flexCenter($padding) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: $padding;
+}
+
+//// font size
+@mixin fontSize($size) {
+  font-size: $size;
+  font-size: #{$size / 16px}rem;
+}
+
+//// box shadow
+@mixin boxShadow() {
+  box-shadow: 0 1px 3px 0.5px transparentize(#171934, 0.8);
+}
+
+//// media queries
+@mixin maxWidth($device) {
+  @media (max-width: map-get($devices, $device)) {
+    @content;
+  }
+}
+@mixin minWidth($device) {
+  $mw: map-get($devices, $device) + 1px;
+  @media (min-width: $mw) {
+    @content;
+  }
+}
